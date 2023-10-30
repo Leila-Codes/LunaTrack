@@ -1,7 +1,19 @@
 {{ range . }}
-<div class="uk-card uk-card-default uk-padding">
-    <h2 class="uk-card-title">{{ .ProjectName }}</h2>
-    <p>{{ .ProjectDescription }}</p>
-    <small>{{ .ProjectDate.Format "02/01/2006 15:04 Z" }}</small>
-</div>
+<article class="uk-comment">
+    <header class="uk-comment-header">
+        <svg class="uk-commend-avatar" alt="Project Key" width="100px" height="100px">
+            <g>
+            <circle r="35" cx="50" cy="50" fill="orange"/>
+            <text font-size="16pt" font-weight="bold" x="5" y="40" fill="white">{{ .Key }}</text>
+            </g>
+        </svg>
+        <h4 class="uk-comment-title">{{ .Title }}</h4>
+<!--        <ul class="uk-comment-meta uk-subnav">{{ .Key }}</ul>-->
+    </header>
+    {{ if .Description }}
+    <div class="uk-comment-body">
+        {{ .Description }}
+    </div>
+    {{ end }}
+</article>
 {{ end }}

@@ -21,9 +21,11 @@ var (
 )
 
 func ProjectListing(w http.ResponseWriter, r *http.Request) {
+	projectList := database.GetProjects()
+
 	// TODO: Apply a filter to the projects (e.g. search)
 	tmpl := template.Must(template.ParseFiles("templates/project-listing.html"))
-	err := tmpl.Execute(w, projects)
+	err := tmpl.Execute(w, projectList)
 	if err != nil {
 		logger.Fatal(err)
 	}
