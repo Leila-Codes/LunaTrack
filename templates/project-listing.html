@@ -1,0 +1,7 @@
+{{ range . }}
+<div class="uk-card uk-card-default uk-padding">
+    <h2 class="uk-card-title">{{ .ProjectName }}</h2>
+    <p>{{ .ProjectDescription }}</p>
+    <small>{{ .ProjectDate.Format "02/01/2006 15:04 Z" }}</small>
+</div>
+{{ end }}

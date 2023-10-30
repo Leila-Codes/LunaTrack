@@ -1,0 +1,31 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  htmx:
+    specifier: ^0.0.2
+    version: 0.0.2
+  htmx.org:
+    specifier: ^1.9.6
+    version: 1.9.6
+  uikit:
+    specifier: ^3.17.6
+    version: 3.17.6
+
+packages:
+
+  /htmx.org@1.9.6:
+    resolution: {integrity: sha512-4Zebo9nzg8u2ZHuIJmvB/nQS6kIMLIoEfhTg/oRwyCIJhL5MLA/jPU1EPEBtGOmG4ZG0k05Vpd3sab2+zfvteQ==}
+    dev: false
+
+  /htmx@0.0.2:
+    resolution: {integrity: sha512-FfUo3ynRYr6Ra4vqmS4Nq9g47607FSmvHYCOuU8bvbW8s4kPMhAmCbMBjuW2cEZI6DauaFNZKinfgV91cc9Feg==}
+    hasBin: true
+    dev: false
+
+  /uikit@3.17.6:
+    resolution: {integrity: sha512-8fSfR67hqEW5P1clHlw1LoUK4AM2aLuO73iLNwv7/pPUYa0JsTYZnpDahEKZOHwtYz+QIQDuncuQsLkX+MqTLw==}
+    dev: false

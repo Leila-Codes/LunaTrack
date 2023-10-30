@@ -1,0 +1,32 @@
+{
+  "name": "LunaTrack",
+  "version": "1.0.0",
+  "description": "Luna Tracker frontend application UI.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Project-Tracker",
+    "Issue-Tracker",
+    "Web",
+    "Application"
+  ],
+  "author": {
+    "name": "LunaSphere Entertainment",
+    "url": "https://lunasphere.co.uk"
+  },
+  "contributors": [
+    {
+      "name": "Leila-Codes",
+      "url": "https://github.com/Leila-Codes",
+      "email": "leila.richardson-noyes@lunasphere.co.uk"
+    }
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "htmx": "^0.0.2",
+    "htmx.org": "^1.9.6",
+    "uikit": "^3.17.6"
+  }
+}
