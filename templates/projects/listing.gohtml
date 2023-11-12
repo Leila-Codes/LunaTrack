@@ -1,5 +1,5 @@
 {{ range . }}
-<article class="uk-comment">
+<article class="uk-comment" hx-get="/projects/{{ .Key }}" hx-trigger="click" hx-swap="outerHTML">
     <header class="uk-comment-header">
         <svg class="uk-commend-avatar" alt="Project Key" width="100px" height="100px">
             <g>
@@ -7,7 +7,7 @@
             <text font-size="16pt" font-weight="bold" x="5" y="40" fill="white">{{ .Key }}</text>
             </g>
         </svg>
-        <h4 class="uk-comment-title">{{ .Title }}</h4>
+        <h4 class="uk-comment-title">{{ .Name }}</h4>
 <!--        <ul class="uk-comment-meta uk-subnav">{{ .Key }}</ul>-->
     </header>
     {{ if .Description }}

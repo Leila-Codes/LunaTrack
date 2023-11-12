@@ -1,32 +1,43 @@
 package main
 
 import (
+	"Luna_Track/database"
+	"github.com/gorilla/mux"
 	"html/template"
 	"net/http"
-	"time"
 )
 
-type ProjectItem struct {
-	ProjectName        string
-	ProjectDescription string
-	ProjectDate        time.Time
+func ProjectsApi(r *mux.Router) {
+	r.Path("/{projectKey}").Methods(http.MethodGet).HandlerFunc(GetProject)
+	r.Methods(http.MethodGet).HandlerFunc(ListProjects)
 }
 
-var (
-	projects = []ProjectItem{
-		{ProjectName: "Test Project #1", ProjectDescription: "This is a test project for your amazement.", ProjectDate: time.Now()},
-		{ProjectName: "Uber Project #2", ProjectDescription: "This is a huge project, yeet!!!", ProjectDate: time.Now().Add(-36 * time.Hour)},
-		{ProjectName: "LEGACY project", ProjectDescription: "Something really, really old.", ProjectDate: time.Unix(0, 0)},
+func ListProjects(w http.ResponseWriter, r *http.Request) {
+	projectList, err := database.ListProjects()
+	if err != nil {
+		HttpError(w, http.StatusInternalServerError, err)
+		return
 	}
-)
 
-func ProjectListing(w http.ResponseWriter, r *http.Request) {
-	projectList := database.GetProjects()
-
-	// TODO: Apply a filter to the projects (e.g. search)
-	tmpl := template.Must(template.ParseFiles("templates/project-listing.html"))
-	err := tmpl.Execute(w, projectList)
+	tmpl := template.Must(template.ParseFiles("templates/projects/listing.gohtml"))
+	err = tmpl.Execute(w, projectList)
 	if err != nil {
 		logger.Fatal(err)
+	}
+}
+
+func GetProject(w http.ResponseWriter, r *http.Request) {
+	vars := mux.Vars(r)
+
+	projectDetail, err := database.GetProject(vars["projectKey"])
+	if err != nil {
+		HttpError(w, http.StatusInternalServerError, err)
+		return
+	}
+
+	tmpl := template.Must(template.ParseFiles("templates/projects/details.gohtml"))
+	err = tmpl.Execute(w, projectDetail)
+	if err != nil {
+		HttpError(w, http.StatusInternalServerError, err)
 	}
 }

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"Luna_Track/db"
+	"Luna_Track/database"
 	"Luna_Track/log"
 	"github.com/gorilla/mux"
 	"html/template"
@@ -11,24 +11,29 @@ import (
 const serverAddr = ":8080"
 
 var (
-	logger   = log.GetLogger()
-	database db.IDatabase
+	logger = log.GetLogger()
 )
 
 func main() {
 	logger.Debugf("Application starting...")
 
-	database = db.ConnectDatabase(db.Postgres, db.DatabaseConfig{
-		Host: "localhost",
-		User: "postgres",
-		Pass: "postgres",
-		Name: "luna_track",
-		Port: 5432,
-	})
+	err := database.Connect(
+		"localhost",
+		5432,
+		"postgres",
+		"postgres",
+		"luna_track",
+	)
+	if err != nil {
+		panic(err)
+	}
 
 	router := mux.NewRouter()
 
-	router.HandleFunc("/projects", ProjectListing)
+	projectsApi := router.PathPrefix("/projects").Subrouter()
+	ProjectsApi(projectsApi)
+	//router.Use(projectsApi)
+
 	router.HandleFunc("/", index)
 
 	router.PathPrefix("/").Handler(http.FileServer(http.Dir("www")))

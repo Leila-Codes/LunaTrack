@@ -1,0 +1,18 @@
+<div id="projectDetails">
+    <button class="uk-button uk-button-primary" hx-get="/projects" hx-target="#projectDetails" hx-swap="outerHTML">
+        <span uk-icon="arrow-left"></span>
+        Go Back
+    </button>
+    <form action="" class="uk-form">
+        <input aria-label="A short project Name or Title" type="text" class="uk-input" name="title"
+               placeholder="Name | Title" value="{{.Name}}"/>
+        <textarea aria-label="Optional description of the project" name="description" id="projectDescription" cols="30"
+                  rows="10" class="uk-textarea">
+            {{ .Description }}
+        </textarea>
+        <label for="projectAuthor">Project Owner:
+            <input aria-label="Username of the owner of the project" id="projectAuthor" type="text" class="uk-input"
+                   disabled value="{{ .Owner.Username }}"/>
+        </label>
+    </form>
+</div>
