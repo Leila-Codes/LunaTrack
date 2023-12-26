@@ -3,6 +3,7 @@ package models
 import "time"
 
 type Issue struct {
+	ID            uint64
 	ProjectKey    string
 	Project       *Project
 	Type          *IssueType

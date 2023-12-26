@@ -67,7 +67,7 @@ CREATE TABLE issues
     issue_status INT          NOT NULL,
     priority     INT          NOT NULL,
     summary      varchar(255) NOT NULL,
-    description  text         not null,
+    description  text         NULL,
     created_at   timestamp    NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at   timestamp NULL,
     deleted_at   timestamp NULL,
